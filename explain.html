@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Explanation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #explanation {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        /* Custom styles for stock market environment */
+        #explanation.stock-market {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+        }
+
+        #explanation.stock-market h2 {
+            color: #007bff;
+        }
+
+        #explanation.stock-market p {
+            color: #444;
+        }
+
+        #explanation.stock-market img {
+            margin: 10px auto;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Additional styles for financial chart simulation */
+        .financial-chart {
+            width: 100%;
+            height: 300px;
+            background-color: #fff;
+            margin-top: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Market Explanation</h1>
+
+    <div id="explanation" class="stock-market">
+        <!-- JavaScript will populate this section with explanations -->
+    </div>
+
+    <div class="financial-chart">
+        <!-- Your financial chart or graph can be displayed here -->
+    </div>
+
+    <script>
+        // JavaScript to fetch and display explanation based on query parameter
+        document.addEventListener("DOMContentLoaded", function() {
+            var params = new URLSearchParams(window.location.search);
+            var questionId = params.get('question');
+
+            // Example explanations for each question
+            var explanations = {
+                "question1": "<h2>Question 1 Explanation</h2><p>This is the explanation for Question 1.</p><img src='e1.1.png' alt='Explanation Image 1'><img src='e1.2.png' alt='Explanation Image 1'><img src='e1.3.png' alt='Explanation Image 1'><img src='e1.4.png' alt='Explanation Image 1'>",
+                "question2": "<h2>Question 2 Explanation</h2><p>This is the explanation for Question 2.</p><img src='explanation_image2.jpg' alt='Explanation Image 2'>",
+                "question3": "<h2>Question 3 Explanation</h2><p>This is the explanation for Question 3.</p><img src='explanation_image2.jpg' alt='Explanation Image 2'>",
+                // Add more explanations for other questions as needed
+            };
+
+            var explanationDiv = document.getElementById('explanation');
+            if (questionId && explanations[questionId]) {
+                explanationDiv.innerHTML = explanations[questionId];
+            } else {
+                explanationDiv.innerHTML = "<p>No explanation found for the selected question.</p>";
+            }
+        });
+    </script>
+</body>
+</html>

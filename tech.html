@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Analysis Practice Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            padding: 20px 0;
+        }
+
+        #coinDashboard {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 0;
+            border-radius: 5px;
+            width: 200px;
+            margin: 20px auto;
+        }
+
+        #coinDashboard p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        #coinCount {
+            font-weight: bold;
+        }
+
+        .question {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto 20px;
+            max-width: 500px;
+        }
+
+        .question img {
+            display: block;
+            max-width: 100%;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+        }
+
+        .question button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .question button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .question p {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .correct-answer {
+            color: green;
+        }
+
+        .incorrect-answer {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Technical Analysis Practice Section</h1>
+
+    <div id="coinDashboard">
+        <p>Coins: <span id="coinCount">10</span></p>
+    </div>
+
+    <!-- Question 1 -->
+    <div class="question" id="question1">
+        <img src="t1.png" alt="Image 1">
+        <button onclick="checkAnswer('up', 1, this)" id="upButton1">Up</button>
+        <button onclick="checkAnswer('down', 1, this)" id="downButton1">Down</button>
+        <p id="result1"></p>
+        <button onclick="showExplanation('question1')">Explain</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question" id="question2">
+        <img src="t2.png" alt="Image 2">
+        <button onclick="checkAnswer('up', 2, this)" id="upButton2">Up</button>
+        <button onclick="checkAnswer('down', 2, this)" id="downButton2">Down</button>
+        <p id="result2"></p>
+        <button onclick="showExplanation('question2')">Explain</button>
+    </div>
+    <!-- Question 3 -->
+    <div class="question" id="question3">
+        <img src="t3.png" alt="Image 3">
+        <button onclick="checkAnswer('up', 3, this)" id="upButton3">Up</button>
+        <button onclick="checkAnswer('down', 3, this)" id="downButton3">Down</button>
+        <p id="result3"></p>
+        <button onclick="showExplanation('question3')">Explain</button>
+    </div>
+
+    <!-- Repeat the above div structure for remaining questions -->
+
+    <script>
+
+        var coinCount = 10; // Starting number of coins
+
+        function checkAnswer(answer, questionNumber, button) {
+            // Check if buttons are disabled
+            if (button.disabled) {
+                return; // Exit function if buttons are disabled
+            }
+
+            // Disable buttons after selection
+            var upButton = document.getElementById("upButton" + questionNumber);
+            var downButton = document.getElementById("downButton" + questionNumber);
+            upButton.disabled = true;
+            downButton.disabled = true;
+
+            // Check answer against the correct answer
+            var correctAnswer;
+            var resultElement = document.getElementById("result" + questionNumber);
+
+            switch(questionNumber) {
+                case 1:
+                    correctAnswer = "up"; // Change this to the correct answer for Question 1
+                    break;
+                case 2:
+                    correctAnswer = "down"; // Change this to the correct answer for Question 2
+                    break;
+                case 3:
+                    correctAnswer = "up"; // Change this to the correct answer for Question 3
+                    break;
+                // Add more cases for additional questions
+                default:
+                    correctAnswer = ""; // Set default value for other questions
+            }
+
+            if (answer === correctAnswer) {
+                resultElement.innerHTML = "Correct!";
+                resultElement.classList.add("correct-answer");
+                updateCoins(4); // Give 4 coins for correct answer
+            } else {
+                resultElement.innerHTML = "Incorrect. Try again.";
+                resultElement.classList.add("incorrect-answer");
+                updateCoins(-1); // Reduce 1 coin for incorrect answer
+            }
+
+            // Enable buttons for the next question
+            var nextQuestionNumber = questionNumber + 1;
+            var nextUpButton = document.getElementById("upButton" + nextQuestionNumber);
+            var nextDownButton = document.getElementById("downButton" + nextQuestionNumber);
+            if (nextUpButton && nextDownButton) {
+                nextUpButton.disabled = false;
+                nextDownButton.disabled = false;
+            }
+        }
+
+        function updateCoins(change) {
+            coinCount += change;
+            document.getElementById("coinCount").textContent = coinCount;
+        }
+
+
+// funtion for explain page
+function showExplanation(questionId) {
+            // Redirect user to the explain.html page with query parameter for specific question
+            window.location.href = 'explain.html?question=' + questionId;
+        }
+
+
+    </script>
+</body>
+</html>
